@@ -1,0 +1,53 @@
+[ ca ]
+default_ca      = CA_root
+
+[req]
+distinguished_name = req_distinguished_name
+
+[req_distinguished_name]
+
+[ CA_root ]
+new_certs_dir    = manufacturer-root-ca
+database         = manufacturer-root-ca/index.txt
+default_md       = sha256
+policy           = policy_match
+serial           = manufacturer-root-ca/serial
+default_enddate  = 99991231235959Z
+crlnumber        = manufacturer-root-ca/crlnumber
+
+[ CA_devices ]
+new_certs_dir    = manufacturer-devices-ca
+database         = manufacturer-devices-ca/index.txt
+default_md       = sha256
+policy           = policy_match
+serial           = manufacturer-devices-ca/serial
+default_enddate  = 99991231235959Z
+crlnumber        = manufacturer-devices-ca/crlnumber
+
+[ policy_match ]
+countryName             = optional
+stateOrProvinceName     = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = optional
+emailAddress            = optional
+serialNumber            = optional
+
+[ ext_root ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always, issuer
+basicConstraints        = critical, CA:true
+keyUsage                = critical, cRLSign, keyCertSign
+
+[ ext_intermediate ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always, issuer
+basicConstraints        = critical, CA:true, pathlen:0
+keyUsage                = critical, cRLSign, keyCertSign
+
+[ ext_client ]
+basicConstraints        = CA:FALSE
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid, issuer
+keyUsage                = critical, keyAgreement, digitalSignature
+extendedKeyUsage        = clientAuth
