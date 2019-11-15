@@ -26,6 +26,17 @@ default_days     = 3650
 crlnumber        = service-devices-ca/crlnumber
 default_crl_days = 365
 
+[ CA_servers ]
+new_certs_dir    = service-servers-ca
+database         = service-servers-ca/index.txt
+default_md       = sha256
+policy           = policy_match
+serial           = service-servers-ca/serial
+default_days     = 3650
+crlnumber        = service-servers-ca/crlnumber
+default_crl_days = 365
+copy_extensions  = copy
+
 [ policy_match ]
 countryName             = optional
 stateOrProvinceName     = optional
@@ -53,3 +64,10 @@ subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid, issuer
 keyUsage                = critical, keyAgreement, digitalSignature
 extendedKeyUsage        = clientAuth
+
+[ ext_server ]
+basicConstraints        = CA:FALSE
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid, issuer
+keyUsage                = critical, keyAgreement, digitalSignature
+extendedKeyUsage        = serverAuth
