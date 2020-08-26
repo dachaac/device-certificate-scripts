@@ -2,7 +2,7 @@
 echo "Creating Service Root CA..."
 mkdir service-root-ca
 pwgen -s 24 1 > service-root-ca/service-root-ca.key.password
-openssl ecparam -name secp521r1 -genkey | openssl ec -passout file:service-root-ca/service-root-ca.key.password -aes256 -out service-root-ca/service-root-ca.key
+openssl ecparam -name secp384r1 -genkey | openssl ec -passout file:service-root-ca/service-root-ca.key.password -aes256 -out service-root-ca/service-root-ca.key
 openssl req -new -config openssl.cnf -sha256 -nodes -subj "/C=FI/O=Service/CN=Service Root CA" -key service-root-ca/service-root-ca.key -passin file:service-root-ca/service-root-ca.key.password -out service-root-ca/service-root-ca.csr
 
 touch service-root-ca/index.txt

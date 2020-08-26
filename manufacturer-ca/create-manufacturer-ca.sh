@@ -2,7 +2,7 @@
 echo "Creating Manufacturer's Products Root CA..."
 mkdir manufacturer-root-ca
 pwgen -s 24 1 > manufacturer-root-ca/manufacturer-root-ca.key.password
-openssl ecparam -name secp521r1 -genkey | openssl ec -passout file:manufacturer-root-ca/manufacturer-root-ca.key.password -aes256 -out manufacturer-root-ca/manufacturer-root-ca.key
+openssl ecparam -name secp384r1 -genkey | openssl ec -passout file:manufacturer-root-ca/manufacturer-root-ca.key.password -aes256 -out manufacturer-root-ca/manufacturer-root-ca.key
 openssl req -new -config openssl.cnf -sha256 -nodes -subj "/C=FI/O=Manufacturer/CN=Products Root CA" -key manufacturer-root-ca/manufacturer-root-ca.key -passin file:manufacturer-root-ca/manufacturer-root-ca.key.password -out manufacturer-root-ca/manufacturer-root-ca.csr
 
 touch manufacturer-root-ca/index.txt
