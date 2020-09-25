@@ -9,7 +9,7 @@ distinguished_name = req_distinguished_name
 [ CA_root ]
 new_certs_dir    = service-root-ca
 database         = service-root-ca/index.txt
-default_md       = sha256
+default_md       = sha384
 policy           = policy_match
 serial           = service-root-ca/serial
 default_days     = 3650
@@ -19,7 +19,7 @@ default_crl_days = 365
 [ CA_devices ]
 new_certs_dir    = service-devices-ca
 database         = service-devices-ca/index.txt
-default_md       = sha256
+default_md       = sha384
 policy           = policy_match
 serial           = service-devices-ca/serial
 default_days     = 3650
@@ -29,7 +29,7 @@ default_crl_days = 365
 [ CA_servers ]
 new_certs_dir    = service-servers-ca
 database         = service-servers-ca/index.txt
-default_md       = sha256
+default_md       = sha384
 policy           = policy_match
 serial           = service-servers-ca/serial
 default_days     = 3650

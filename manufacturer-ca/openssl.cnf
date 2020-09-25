@@ -9,7 +9,7 @@ distinguished_name = req_distinguished_name
 [ CA_root ]
 new_certs_dir    = manufacturer-root-ca
 database         = manufacturer-root-ca/index.txt
-default_md       = sha256
+default_md       = sha384
 policy           = policy_match
 serial           = manufacturer-root-ca/serial
 default_enddate  = 99991231235959Z
@@ -18,7 +18,7 @@ crlnumber        = manufacturer-root-ca/crlnumber
 [ CA_devices ]
 new_certs_dir    = manufacturer-devices-ca
 database         = manufacturer-devices-ca/index.txt
-default_md       = sha256
+default_md       = sha384
 policy           = policy_match
 serial           = manufacturer-devices-ca/serial
 default_enddate  = 99991231235959Z
