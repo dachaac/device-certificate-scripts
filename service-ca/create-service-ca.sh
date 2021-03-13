@@ -36,7 +36,7 @@ openssl ca -config openssl.cnf -name CA_root -extensions ext_intermediate -keyfi
 echo "Creating test device certificate..."
 pwgen -s 24 1 > IOTDEVICE-K1234567.key.password
 openssl ecparam -name prime256v1 -genkey | openssl ec -passout file:IOTDEVICE-K1234567.key.password -aes256 -out IOTDEVICE-K1234567.key
-openssl req -new -config openssl.cnf -sha384 -nodes -subj "/CN=urn:dev:ops:32473-IoT_Device-K1234567" -key IOTDEVICE-K1234567.key -passin file:IOTDEVICE-K1234567.key.password -out IOTDEVICE-K1234567.csr
+openssl req -new -config openssl.cnf -sha384 -nodes -subj "/CN=urn:dev:ops:32473-IoTDevice-K1234567" -key IOTDEVICE-K1234567.key -passin file:IOTDEVICE-K1234567.key.password -out IOTDEVICE-K1234567.csr
 
 openssl ca -config openssl.cnf -name CA_devices -extensions ext_client -keyfile service-devices-ca/service-devices-ca.key -passin file:service-devices-ca/service-devices-ca.key.password -cert service-devices-ca/service-devices-ca.crt -in IOTDEVICE-K1234567.csr -batch | openssl x509 -out IOTDEVICE-K1234567.crt -outform PEM
 

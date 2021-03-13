@@ -9,7 +9,7 @@ gnome-terminal --tab -t "Leshan client" -- java \
 	-scert \
 	device-certificate-scripts/leshan-bsserver.crt \
 	-n \
-	urn:dev:ops:32473-IoT_Device-K1234567 \
+	urn:dev:ops:32473-IoTDevice-K1234567 \
 	-ccert \
 	device-certificate-scripts/leshan-client-initial-devurn-bundle.crt \
 	-cprik \

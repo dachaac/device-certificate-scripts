@@ -25,14 +25,14 @@ openssl ca -config openssl.cnf -name CA_root -extensions ext_intermediate -keyfi
 echo "Creating test device certificate - IDevID..."
 pwgen -s 24 1 > IOTDEVICE-K1234567-IDevID.key.password
 openssl ecparam -name prime256v1 -genkey | openssl ec -passout file:IOTDEVICE-K1234567-IDevID.key.password -aes256 -out IOTDEVICE-K1234567-IDevID.key
-openssl req -new -config openssl.cnf -sha384 -nodes -subj "/C=FI/O=Manufacturer/CN=IoT Device/serialNumber=K1234567" -key IOTDEVICE-K1234567-IDevID.key -passin file:IOTDEVICE-K1234567-IDevID.key.password -out IOTDEVICE-K1234567-IDevID.csr
+openssl req -new -config openssl.cnf -sha384 -nodes -subj "/C=FI/O=Manufacturer/CN=IoTDevice/serialNumber=K1234567" -key IOTDEVICE-K1234567-IDevID.key -passin file:IOTDEVICE-K1234567-IDevID.key.password -out IOTDEVICE-K1234567-IDevID.csr
 
 openssl ca -config openssl.cnf -name CA_devices -extensions ext_client -keyfile manufacturer-devices-ca/manufacturer-devices-ca.key -passin file:manufacturer-devices-ca/manufacturer-devices-ca.key.password -cert manufacturer-devices-ca/manufacturer-devices-ca.crt -in IOTDEVICE-K1234567-IDevID.csr -batch | openssl x509 -out IOTDEVICE-K1234567-IDevID.crt -outform PEM
 
 echo "Creating test device certificate - devurn..."
 pwgen -s 24 1 > IOTDEVICE-K1234567-devurn.key.password
 openssl ecparam -name prime256v1 -genkey | openssl ec -passout file:IOTDEVICE-K1234567-devurn.key.password -aes256 -out IOTDEVICE-K1234567-devurn.key
-openssl req -new -config openssl.cnf -sha384 -nodes -subj "/C=FI/O=Manufacturer/CN=urn:dev:ops:32473-IoT_Device-K1234567" -key IOTDEVICE-K1234567-devurn.key -passin file:IOTDEVICE-K1234567-devurn.key.password -out IOTDEVICE-K1234567-devurn.csr
+openssl req -new -config openssl.cnf -sha384 -nodes -subj "/C=FI/O=Manufacturer/CN=urn:dev:ops:32473-IoTDevice-K1234567" -key IOTDEVICE-K1234567-devurn.key -passin file:IOTDEVICE-K1234567-devurn.key.password -out IOTDEVICE-K1234567-devurn.csr
 
 openssl ca -config openssl.cnf -name CA_devices -extensions ext_client -keyfile manufacturer-devices-ca/manufacturer-devices-ca.key -passin file:manufacturer-devices-ca/manufacturer-devices-ca.key.password -cert manufacturer-devices-ca/manufacturer-devices-ca.crt -in IOTDEVICE-K1234567-devurn.csr -batch | openssl x509 -out IOTDEVICE-K1234567-devurn.crt -outform PEM
 
