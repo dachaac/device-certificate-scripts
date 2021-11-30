@@ -1,0 +1,39 @@
+[ ca ]
+default_ca      = CA_root
+
+[req]
+distinguished_name = req_distinguished_name
+
+[req_distinguished_name]
+
+[ CA_root ]
+new_certs_dir    = codesign-root-ca
+database         = codesign-root-ca/index.txt
+default_md       = sha384
+policy           = policy_match
+serial           = codesign-root-ca/serial
+default_days     = 3650
+crlnumber        = codesign-root-ca/crlnumber
+default_crl_days = 365
+
+[ policy_match ]
+countryName             = optional
+stateOrProvinceName     = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = optional
+emailAddress            = optional
+serialNumber            = optional
+
+[ ext_root ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always, issuer
+basicConstraints        = critical, CA:true
+keyUsage                = critical, cRLSign, keyCertSign
+
+[ ext_codesign ]
+basicConstraints        = CA:FALSE
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid, issuer
+keyUsage                = critical, digitalSignature
+extendedKeyUsage        = critical, codeSigning
